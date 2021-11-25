@@ -63,9 +63,12 @@ namespace Hash_function
         public void MD5Hash(StringBuilder MD5Value)
         {
             var data = rtbInputData.Text;
+            //var dataByte = Convert.ToByte(data, 16).ToString();
+           
             MD5 mh = MD5.Create();
-            byte[] dataInput = System.Text.Encoding.ASCII.GetBytes(data);
+            byte[] dataInput = Encoding.UTF8.GetBytes(data);
             byte[] hash = mh.ComputeHash(dataInput);
+            
 
             for (int i = 0; i < hash.Length; i++)
             {
@@ -77,8 +80,9 @@ namespace Hash_function
         public void SHA1Hash(StringBuilder SHA1Value)
         {
             var data = rtbInputData.Text;
-            SHA1Managed sHA1 = new SHA1Managed();
-            byte[] dataInput = System.Text.Encoding.ASCII.GetBytes(data);
+            SHA1 sHA1 = SHA1.Create();
+            byte[] dataInput = Encoding.UTF8.GetBytes(data);
+            
             byte[] hash = sHA1.ComputeHash(dataInput);
 
             for (int i = 0; i < hash.Length; i++)
@@ -91,10 +95,9 @@ namespace Hash_function
         public void SHA2Hash(StringBuilder SHA2Value)
         {
             var data = rtbInputData.Text;
-            SHA256Managed sHA256 = new SHA256Managed();
-            byte[] dataInput = System.Text.Encoding.ASCII.GetBytes(data);
+            SHA256 sHA256 = SHA256.Create();
+            byte[] dataInput = Encoding.UTF8.GetBytes(data);
             byte[] hash = sHA256.ComputeHash(dataInput);
-
             for (int i = 0; i < hash.Length; i++)
             {
                 SHA2Value.Append(hash[i].ToString("x2"));
@@ -231,18 +234,7 @@ namespace Hash_function
                 txtEditor = ofd.FileName.ToString();
                 reader = new StreamReader(txtEditor);
                 var filterReader = reader.ReadToEnd();
-                
-               /* for (int i = 0; i < filterReader.Length; i++)
-                {
-
-                }*/
-               /* for (int i = 0; i < txtEditor.Length; i++)
-                {
-                    if ([i] != 0 || tmp[i] != 1)
-                    {
-                        MessageBox.Show("Warning: File must be a binary file!!!");
-                    }
-                }*/
+               
                 rtbInputData.Text = filterReader.ToString();
             }
         }
