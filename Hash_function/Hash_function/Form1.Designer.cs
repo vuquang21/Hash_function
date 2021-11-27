@@ -139,7 +139,6 @@
             this.rtbInputData.Size = new System.Drawing.Size(523, 24);
             this.rtbInputData.TabIndex = 1;
             this.rtbInputData.Text = "";
-            this.rtbInputData.TextChanged += new System.EventHandler(this.rtbInputData_TextChanged);
             // 
             // btnCalculate
             // 
